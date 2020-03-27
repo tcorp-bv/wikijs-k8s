@@ -6,10 +6,10 @@ metadata:
     kubernetes.io/ingress.class: {{ .Values.ingress.class }}
 spec:
   rules:
-  - host: {{ .Values.ingress.host }}
-    http:
+  -  http:
       paths:
       - path: /
         backend:
           serviceName: wikijs
           servicePort: 80
+          {{ if ne .Values.ingress.host "*" }}host: "{{ .Values.ingress.host }}"{{ end }}
