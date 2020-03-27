@@ -1,0 +1,6 @@
+apiVersion: v2
+name: wikijs
+description: Wikijs is an open-source wiki application
+type: application
+version: 0.0.1
+appVersion: 0.0.1

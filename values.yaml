@@ -1,0 +1,9 @@
+# Default values for wikijs
+
+image: requarks/wiki:2
+storage:
+  class: scw-bssd
+  size: 2Gi
+ingress:
+  host: "*"
+  class: traefik

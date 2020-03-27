@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wikijs
+  labels:
+    app: wikijs
+    track: stable
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wikijs
+  template:
+    metadata:
+      labels:
+        app: wikijs
+    spec:
+      volumes:
+      - name: vol
+        persistentVolumeClaim:
+          claimName: wikijs-pvc
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 2000
+      containers:
+      - name: wikijs
+        image: {{ .Values.image }}
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+
+        env:
+          - name: DB_TYPE
+            value: sqlite
+          - name: DB_FILEPATH
+            value: data/db
+          - name: USE_HTTPS
+            value: "0"
+          - name: NO_PROXY
+            value: localhost
+        ports:
+        - containerPort: 3000
+        securityContext:
+         runAsUser: 1000
+        volumeMounts:
+        - name: vol
+          mountPath: "/wiki/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wikijs-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.storage.size }}
+  storageClassName: {{ .Values.storage.class }}
