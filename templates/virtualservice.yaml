@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: nginx
+spec:
+  hosts:
+  - wiki.tcbv.be
+  gateways:
+  - gw-wiki-tcbv-be.istio-system
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: nginx.{{ Release.Namespace }}
+        port:
+          number: 80
