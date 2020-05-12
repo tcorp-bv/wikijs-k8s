@@ -13,6 +13,6 @@ spec:
         prefix: /
     route:
     - destination:
-        host: nginx.{{ .Release.Namespace }}
+        host: wikijs.{{ .Release.Namespace }}
         port:
           number: 80
