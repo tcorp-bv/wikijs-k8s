@@ -7,6 +7,7 @@ spec:
   - wiki.tcbv.be
   gateways:
   - gw-wiki-tcbv-be.istio-system
+  - gw-wiki-tcorp-me.istio-system
   http:
   - match:
     - uri:
