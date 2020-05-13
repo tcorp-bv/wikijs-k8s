@@ -32,7 +32,7 @@ spec:
             path: /healthz
             port: 3000
             scheme: HTTP
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           timeoutSeconds: 5
 
         env:
