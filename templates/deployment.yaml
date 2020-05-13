@@ -39,7 +39,7 @@ spec:
           - name: DB_TYPE
             value: sqlite
           - name: DB_FILEPATH
-            value: data/db
+            value: /wiki/data/db
           - name: USE_HTTPS
             value: "0"
           - name: NO_PROXY
