@@ -5,6 +5,7 @@ metadata:
 spec:
   hosts:
   - wiki.tcbv.be
+  - wiki.tcorp.me
   gateways:
   - gw-wiki-tcbv-be.istio-system
   - gw-wiki-tcorp-me.istio-system
