@@ -50,7 +50,7 @@ spec:
             memory: 10Mi
           limits:
             cpu: 100m
-            memory: 300Mi
+            memory: 1Gi
         ports:
         - containerPort: 3000
         securityContext:
