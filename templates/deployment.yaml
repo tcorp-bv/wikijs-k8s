@@ -44,6 +44,13 @@ spec:
             value: "0"
           - name: NO_PROXY
             value: localhost
+        resources:
+          requests:
+            cpu: 10m
+            ram: 10Mi
+          limits:
+            cpu: 100m
+            ram: 100Mi
         ports:
         - containerPort: 3000
         securityContext:
