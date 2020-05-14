@@ -16,6 +16,8 @@ spec:
     metadata:
       labels:
         app: wikijs
+      annotations:
+        seccomp.security.alpha.kubernetes.io/pod: runtime/default
     spec:
       volumes:
       - name: vol
