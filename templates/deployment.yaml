@@ -12,18 +12,18 @@ spec:
       app: wikijs
   strategy:
     type: Recreate
-  template:
+  template: # Pod specification
     metadata:
       labels:
         app: wikijs
       annotations:
-        seccomp.security.alpha.kubernetes.io/pod: runtime/default
+        seccomp.security.alpha.kubernetes.io/pod: runtime/default # Security against syscalls
     spec:
       volumes:
       - name: vol
         persistentVolumeClaim:
           claimName: wikijs-pvc
-      securityContext:
+      securityContext: # Security so the process runs as a normal user
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 2000
@@ -38,7 +38,6 @@ spec:
             scheme: HTTP
           initialDelaySeconds: 60
           timeoutSeconds: 5
-
         env:
           - name: DB_TYPE
             value: sqlite
@@ -57,19 +56,20 @@ spec:
             memory: 1Gi
         ports:
         - containerPort: 3000
-        securityContext:
+        securityContext: # Security so the process runs as a normal user
           runAsUser: 1000
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
+          readOnlyRootFilesystem: true # Ensure the process does not change anything on the root filesystem except the volumemount
+          capabilities: # Drop any capabilities except for listening on the network
             drop:
             - ALL
             add:
             - NET_BIND_SERVICE
-        volumeMounts:
+        volumeMounts: # Mount the database volume (sqlite)
         - name: vol
           mountPath: "/wiki/data"
 ---
+# The database volume (will contain sqlite etc)
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
