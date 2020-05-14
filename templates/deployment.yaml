@@ -48,15 +48,22 @@ spec:
             value: localhost
         resources:
           requests:
-            cpu: 10m
-            memory: 10Mi
+            cpu: 100m
+            memory: 300Mi
           limits:
             cpu: 2000m
             memory: 1Gi
         ports:
         - containerPort: 3000
         securityContext:
-         runAsUser: 1000
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - NET_BIND_SERVICE
         volumeMounts:
         - name: vol
           mountPath: "/wiki/data"
