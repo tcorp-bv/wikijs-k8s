@@ -3,7 +3,7 @@ kind: VirtualService
 metadata:
   name: wikijs
 spec:
-  hosts: {{ .Values.hosts }}
+  hosts: {{ .Values.ingress.hosts }}
   gateways:
   - gw-wiki-tcbv-be.istio-system
   - gw-wiki-tcorp-me.istio-system
