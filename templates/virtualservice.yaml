@@ -3,8 +3,14 @@ kind: VirtualService
 metadata:
   name: wikijs
 spec:
-  hosts: {{ .Values.ingress.hosts }}
-  gateways: {{ .Values.ingress.gateways }}
+  hosts: 
+  {{- range .Values.ingress.hosts }}
+  - {{ . | quote }}
+  {{- end }}
+  gateways: 
+  {{- range .Values.ingress.gateways }}
+  - {{ . | quote }}
+  {{- end }}
   http:
   - match:
     - uri:
