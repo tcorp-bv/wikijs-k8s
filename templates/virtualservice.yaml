@@ -4,9 +4,7 @@ metadata:
   name: wikijs
 spec:
   hosts: {{ .Values.ingress.hosts }}
-  gateways:
-  - gw-wiki-tcbv-be.istio-system
-  - gw-wiki-tcorp-me.istio-system
+  gateways: {{ .Values.ingress.gateways }}
   http:
   - match:
     - uri:
