@@ -5,5 +5,6 @@ storage:
   class: scw-bssd
   size: 2Gi
 ingress:
-  host: "*"
-  class: traefik
+  hosts:
+  - wiki.tcbv.be
+  - wiki.tcorp.me
