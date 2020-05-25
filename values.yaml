@@ -1,6 +1,6 @@
 # Default values for wikijs
 
-image: requarks/wiki:2
+image: requarks/wiki:canary@sha256:3b9f8a915ba838494e347f5612cbb302b9c9e901fefe1889675b14a8997af8b1
 storage:
   class: scw-bssd
   size: 2Gi
