@@ -17,6 +17,7 @@ spec:
       labels:
         app: wikijs
       annotations:
+        backup.velero.io/backup-volumes: vol
         seccomp.security.alpha.kubernetes.io/pod: runtime/default # Security against syscalls
     spec:
       volumes:
