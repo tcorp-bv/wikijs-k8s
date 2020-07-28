@@ -1,5 +1,5 @@
 # wikijs-k8s
-Our kubernetes manifests for our wiki. The wiki should be accessible from either https://wiki.tcbv.be or https://wiki.tcorp.me.
+The kubernetes manifests for the TCorp wiki. The wiki should be accessible from either https://wiki.tcbv.be or https://wiki.tcorp.me.
 
 ## Deployment
 The virtualservice.yaml manifest is specific to our architecture. The deployment manifest currently uses sqlite all though we will likely move to postgresql.
