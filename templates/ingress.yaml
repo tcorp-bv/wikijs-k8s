@@ -18,8 +18,9 @@ spec:
           servicePort: 80
 {{- end }}
   tls:
+  - hosts:
 {{- range .Values.ingress.hosts }}
-  - {{ . | quote }}
+    - {{ . | quote }}
 {{- end }}
     secretName: wikijs-tls
 {{ end }}
