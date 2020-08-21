@@ -5,6 +5,7 @@ storage:
   class: scw-bssd
   size: 2Gi
 ingress:
+  type: istio
   hosts:
   - wiki.tcbv.be
   - wiki.tcorp.me
