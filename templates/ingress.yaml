@@ -10,7 +10,7 @@ metadata:
 spec:
   rules:
 {{- range .Values.ingress.hosts }}
-  - {{ . | quote }}
+  - host: {{ . | quote }}
     http:
       paths:
       - backend:
