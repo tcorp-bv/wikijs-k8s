@@ -1,0 +1,25 @@
+{{ if eq .Values.ingress.provider "contour" }}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    kubernetes.io/tls-acme: "true"
+  name: wikijs
+spec:
+  rules:
+{{- range .Values.ingress.hosts }}
+  - {{ . | quote }}
+    http:
+      paths:
+      - backend:
+          serviceName: wikijs.{{ .Release.Namespace }}.svc.cluster.local
+          servicePort: 80
+{{- end }}
+  tls:
+{{- range .Values.ingress.hosts }}
+  - {{ . | quote }}
+{{- end }}
+    secretName: wikijs-tls
+{{ end }}
