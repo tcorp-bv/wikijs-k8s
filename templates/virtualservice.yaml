@@ -18,7 +18,7 @@ spec:
         prefix: /
     route:
     - destination:
-        host: wikijs.{{ .Release.Namespace }}.svc.cluster.local
+        host: wikijs
         port:
           number: 80
 {{- end }}
