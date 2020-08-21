@@ -1,3 +1,4 @@
+{{ if eq .Values.ingress.provider "istio" }}
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -20,3 +21,4 @@ spec:
         host: wikijs.{{ .Release.Namespace }}.svc.cluster.local
         port:
           number: 80
+{{- end }}
