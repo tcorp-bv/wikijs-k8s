@@ -14,7 +14,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: wikijs.{{ .Release.Namespace }}.svc.cluster.local
+          serviceName: wikijs
           servicePort: 80
 {{- end }}
   tls:
